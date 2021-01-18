@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "function/init.php";?>
+<?php require_once "function/init.php";
+$id = $_GET['id']??1;
+$data = [
+    "information"=>[$id],
+];
+$return = curl_post($config['api_get'],json_encode($data),1);
+$urlList = ["hero"=>"herodetail/",
+    "team"=>"teamdetail/",
+    "player"=>"playerdetail/",
+];
+$return["information"]['data']['keywords_list'] = json_decode($return["information"]['data']['keywords_list'],true);
+$keywordsList = [];
+if(is_array($return["information"]['data']['keywords_list']))
+{
+    foreach($return["information"]['data']['keywords_list'] as $type => $list)
+    {
+        foreach($list as $word => $wordInfo)
+        {
+            if(isset($keywordsList[$word]))
+            {
+                if($wordInfo['count']>$keywordsList[$word]['count'])
+                {
+                    $keywordsList[$word] = ["word"=>$word,"id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
+                }
+            }
+            else
+            {
+                $keywordsList[$word] = ["word"=>$word,"id"=>$wordInfo['id'],"type"=>$type,"count"=>$wordInfo['count'],'url'=>$urlList[$type].$wordInfo['id']];
+            }
+        }
+    }
+}
+array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -25,21 +58,27 @@
     <?php generateNav($config,"news");?>
     <div class="content">
         <div class="detail">
-            <h5>四强集结！12月4日季后赛第二周重庆开战，一起见证总决赛战队诞生！</h5>
+            <h5><?php echo $return['information']['data']['title'];?></h5>
             <p>
-                <img src="https://dummyimage.com/1324x625/1886ff/fff" alt="">
+                <img src="<?php echo $return['information']['data']['logo'];?>" alt="<?php echo $return['information']['data']['title'];?>">
             </p>
-            <p>4月11日，王者荣耀高校赛分站赛即将正式开启。高校联赛面向所有高校学生，给每一个热爱《王者荣耀》的高校少年带来电子竞技的乐趣。王者荣耀高校赛还提供了多样的校园文化、趣味玩法、线上互动等等，让每一位召唤师都能体验到最好玩的校园赛事。新一年赛事开启之际，我们不妨来回顾一下以往的精彩时刻。</p>
-            <p>说到明星主播大家肯定不会陌生，为了增加高校赛的趣味，去年高校王者社团的“极限乱斗”挑战赛可谓让大家过足了粉丝瘾。明星主播携手高校王者社团组队PK，这样的对抗赛直接开辟了明星主播带队高校学生的全新玩法。大家脑补一下画面：平时直播间中看到的主播明星，他们丢掉“偶像包袱”，化身素人玩家和高校学子组队开黑，这样的神仙组合谁不喜欢呢？</p>
-            <p>“拼颜值”的玩法模式，高校联赛也没落下！今年2月的校园女神趣味挑战赛，各大直播平台的高颜值主播和校园高校的高颜值女神们齐聚一堂开黑对抗，这样的养眼组合强强联手，让不少召唤师看完比赛后留言感叹：这样的养眼比赛能不能多来几场呀！</p>
+            <p><?php echo $return['information']['data']['content'];?></p>
             <div class="tips clearfix">
                 <span class="left">
-                    <a href="">赛事</a>
-                    <a href="">KPL</a>
-                    <a href="">高校生</a>
+                    <?php
+                    $i = 1;
+                    foreach($keywordsList as $word => $info)
+                    {
+                        if($i<=3)
+                        {
+                            echo '<a href="##">'.$info['word'].'</a>';
+                            //echo '<a href="'.$config['site_url'].'/'.$info['url'].'">'.$info['word'].'</a>';
+                        }
+                        $i++;
+                    }?>
                 </span>
                 <span class="rig">
-                    2020-09-28  12:49:03
+                        <?php echo ($return['information']['data']['type']==2)?$return['information']['data']['site_time']:$return['information']['data']['create_time'];?>
                 </span>
             </div>
         </div>

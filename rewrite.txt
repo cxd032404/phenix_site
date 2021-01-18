@@ -2,4 +2,4 @@
 	rewrite  ^/newsdetail/(.*)$  /detail.php?id=$1?  last;
 	rewrite  ^/game  /game.php  last;
 	rewrite  ^/aboutus  /about.php  last;
-	rewrite  ^/index  /index  last;
+	rewrite  ^/index  /index.php  last;
