@@ -16,7 +16,9 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, viewport-fit=cover"/>
-    <title>关于我们</title>
+    <title>关于我们-<?php echo $config['site_name'];?>，专业电竞赛事比分分析大数据平台</title>
+    <meta name="description" content="<?php echo $config['site_name'];?>是以电竞赛事为主的电子竞技数据平台,<?php echo $config['site_name'];?>涵盖LOL比赛、DOTA2比赛、CSGO赛事、王者荣耀KPL比分等电竞比赛赛程，关注<?php echo $config['site_name'];?>，电竞赛事数据一手掌握。">
+    <meta name=”Keywords” Content=”″>
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/common.css">
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/about_200.css"  media="(min-width:200px) and (max-width:1027px)">
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/about_1028.css" media="(min-width:1028px)">

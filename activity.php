@@ -16,7 +16,9 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, viewport-fit=cover"/>
-    <title>最新活动</title>
+    <title>最新活动-<?php echo $config['site_name'];?>，专业电竞赛事比分分析大数据平台</title>
+    <meta name="description" content="">
+    <meta name=”Keywords” Content=”<?php echo $config['site_name'];?>最新活动,<?php echo $config['site_name'];?>优惠活动″>
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/common.css">
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/lib/swiper.min.css">
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/activity.css">

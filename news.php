@@ -28,7 +28,9 @@ $info['page']['total_page'] = intval($return['informationList']['count']/$info['
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, viewport-fit=cover"/>
-    <title>热门资讯</title>
+    <title>热门资讯-<?php echo $config['site_name'];?>，专业电竞赛事比分分析大数据平台</title>
+    <meta name="description" content="<?php echo $config['site_name'];?>提供热门电竞行业赛事资讯，电子竞技比赛新闻，了解电竞赛事资讯新闻，关注<?php echo $config['site_name'];?>。">
+    <meta name=”Keywords” Content=”电竞赛事资讯,电竞比赛资讯″>
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/common.css">
     <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/news.css">
 </head>
