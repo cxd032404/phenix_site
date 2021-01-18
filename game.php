@@ -26,9 +26,7 @@
     <div class="content">
         <img src="./assets/img/fix.jpg" alt="">
     </div>
-    <div class="footer">
-        <p class="copyright">增值电信业务经营许可证：沪B2-20200299沪ICP备15052255号-1 沪公网安备 31011202012378号</p>
-    </div>
+    <?php renderCertification();?>
 </div>
 </body>
 </html>

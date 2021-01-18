@@ -158,9 +158,16 @@
         echo '<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>';
         echo '<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
     }
-    function renderCertification()
+    function renderCertification($withHead = 1)
     {
-        echo '<div align="center">增值电信业务经营许可证：沪B2-20200299沪ICP备15052255号-1 沪公网安备 31011202012378号</div>';
-
+        if($withHead == 1)
+        {
+            echo '    <div class="footer">';
+        }
+        echo '<p class="copyright">增值电信业务经营许可证：沪B2-20200299沪ICP备15052255号-1 沪公网安备 31011202012378号</p>';
+        if($withHead == 1)
+        {
+            echo '</div>';
+        }
     }
     ?>
