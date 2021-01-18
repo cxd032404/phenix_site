@@ -33,6 +33,13 @@ if(is_array($return["information"]['data']['keywords_list']))
     }
 }
 array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsList,"count")),SORT_DESC,$keywordsList);
+$data2 = [
+    "infoListWithGame"=>["dataType"=>"informationList","game"=>$return['information']['data']['game'],"page"=>1,"page_size"=>4,
+        "type"=>$return['information']['data']['type']==4?"4":"1,2,3,5","fields"=>"id,title"],
+    "infoList"=>["dataType"=>"informationList","page"=>1,"page_size"=>4,
+        "type"=>$return['information']['data']['type']!=4?"4":"1,2,3,5","fields"=>"id,title"],
+];
+$return2 = curl_post($config['api_get'],json_encode($data2),1);
 ?>
 <head>
     <meta charset="utf-8">
@@ -86,9 +93,12 @@ array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsLi
             <h6>相关文章推荐</h6>
             <div>
                 <ul>
-                    <li><a href="">虎牙明星主播踢馆名校战队，峡谷高材生与学霸的荣耀对决</a></li>
-                    <li><a href="">【KPL今日预报】成都AG超玩会 vs 重庆QG，揭幕战宿敌再遇谁能首胜？</a></li>
-                    <li><a href="">王者荣耀世界冠军杯总决赛落地首都北京</a></li>
+                    <?php
+                    $i = 1;
+                    foreach($return2['infoListWithGame']['data'] as $key => $value) {
+                        if($value['id']!=$return['information']['data']['id'] && $i<=3){?>
+                            <li><a href="<?php echo $config['site_url'];?>newsdetail/<?php echo $value['id'];?>"><?php echo $value['title'];?></a></li>
+                        <?php $i++;}}?>
                 </ul>
             </div>
         </div>
@@ -96,9 +106,12 @@ array_multisort(array_combine(array_keys($keywordsList),array_column($keywordsLi
             <h6>热门资讯</h6>
             <div>
                 <ul>
-                    <li><a href="">2021年KPL春季赛常规赛赛程公布</a></li>
-                    <li><a href="">强强联合！LGD携手大鹅文化，斥资8000万进军KPL</a></li>
-                    <li><a href="">2021年KPL春季赛常规赛赛程公布</a></li>
+                    <?php
+                    $i = 1;
+                    foreach($return2['infoList']['data'] as $key => $value) {
+                        if($value['id']!=$return['information']['data']['id'] && $i<=3){?>
+                            <li><a href="<?php echo $config['site_url'];?>newsdetail/<?php echo $value['id'];?>"><?php echo $value['title'];?></a></li>
+                        <?php $i++;}}?>
                 </ul>
             </div>
         </div>
