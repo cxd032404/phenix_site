@@ -21,13 +21,13 @@
         $totalPage = ceil($total_count/$page_size);
         if($current_page>1)
         {
-            echo '<li><a href="'.$url."/".($current_page-1).'"><<</a></li>';
+            echo '<a href="'.$url."/".($current_page-1).'" class="prev"><<</a>';
         }
         if($totalPage<=$p+$p2)
         {
             for($i=1;$i<=$totalPage;$i++)
             {
-                echo '<li '.(($i-$current_page)==0?'class="active"':'').'><a href="'.$url."/".$i.'">'.$i.'</a></li>';
+                echo '<a '.(($i-$current_page)==0?'class="active"':'').'href="'.$url."/".$i.'">'.$i.'</a>';
             }
         }
         else
@@ -36,62 +36,62 @@
             {
                 for($i=1;$i<=$p;$i++)
                 {
-                    echo '<li '.(($i-$current_page)==0?'class="active"':'').'><a href="'.$url."/".$i.'">'.$i.'</a></li>';
+                    echo '<a '.(($i-$current_page)==0?'class="active"':'').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<li><a href="'.$url."/".($current_page+$p).'">...</a></li>';
+                echo '<a href="'.$url."/".($current_page+$p).'">...</a>';
                 for($i=$p2;$i>0;$i--)
                 {
-                    echo '<li><a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                    echo '<a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
             elseif($current_page<=($p))
             {
                 for($i=1;$i<=($p+$p2);$i++)
                 {
-                    echo '<li '.(($i-$current_page)==0?'class="active"':'').'><a href="'.$url."/".$i.'">'.$i.'</a></li>';
+                    echo '<a '.(($i-$current_page)==0?'class="active"':'').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<li><a  href="'.$url."/".($current_page+$p).'">...</a></li>';
+                echo '<a  href="'.$url."/".($current_page+$p).'">...</a>';
                 for($i=$p2;$i>0;$i--)
                 {
-                    echo '<li><a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                    echo '<a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
             elseif($current_page>$p && $current_page<($totalPage-$p))
             {
                 for($i=1;$i<=1;$i++)
                 {
-                    echo '<li><a href="'.$url."/".$i.'">'.$i.'</a></li>';
+                    echo '<a href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<li><a href="'.$url."/".($current_page-$p).'">...</a></li>';
+                echo '<a href="'.$url."/".($current_page-$p).'">...</a>';
                 for($i=$current_page-2;$i<=$current_page+2;$i++)
                 {
-                    echo '<li '.(($i-$current_page)==0?'class="active"':'').'><a href="'.$url."/".$i.'">'.$i.'</a></li>';
+                    echo '<a '.(($i-$current_page)==0?'class="active"':'').' href="'.$url."/".$i.'">'.$i.'</a>';
                 }
-                echo '<li><a href="'.$url."/".($current_page+$p).'">...</a></li>';
+                echo '<a href="'.$url."/".($current_page+$p).'">...</a>';
                 for($i=$p2;$i>0;$i--)
                 {
-                    echo '<li><a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                    echo '<a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
             elseif($current_page>=($totalPage-$p))
             {
                 for($i=1;$i<=1;$i++)
                 {
-                    echo '<li><a href="'.$url."/".$i.'">'.$i.'</a></li>';
+                    echo '<a href="'.$url."/".$i.'">'.$i.'</a>';
                 }
                 if($totalPage-$p != 1)
                 {
-                    echo '<li><a href="'.$url."/".($current_page-$p).'">...</a></li>';
+                    echo '<a href="'.$url."/".($current_page-$p).'">...</a>';
                 }
                 for($i=$p;$i>0;$i--)
                 {
-                    echo '<li '.(($totalPage-$i-$current_page)==0?'class="active"':'').'><a href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a></li>';
+                    echo '<a '.(($totalPage-$i-$current_page)==0?'class="active"':'').' href="'.$url."/".($totalPage-$i).'">'.($totalPage-$i).'</a>';
                 }
             }
         }
         if($current_page<$totalPage)
         {
-            echo '<li><a href="'.$url."/".($current_page+1).'">>></a></li>';
+            echo '<a href="'.$url."/".($current_page+1).'" class="next">>></a>';
         }
     }
     function processCache($cacheConfig,$dataType,$params=[])

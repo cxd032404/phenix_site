@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "function/init.php";?>
+<?php require_once "function/init.php";
+$data = [
+    "slideImage"=>["dataType"=>"imageList","site_id"=>2,"flag"=>"index_slider","page_size"=>20],
+];
+$return = curl_post($config['api_get'],json_encode($data),1);
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

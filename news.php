@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "function/init.php";?>
+<?php require_once "function/init.php";
+$info['page']['page_size'] = 5;
+$page = $_GET['page']??1;
+if($page==''){
+    $page=1;
+}
+$data = [
+    "informationList"=>["page"=>$page,"page_size"=>$info['page']['page_size'],"type"=>"1,2,3,5","fields"=>"*"],
+];
+$return = curl_post($config['api_get'],json_encode($data),1);
+$info['page']['total_count'] = $return['informationList']['count'];
+$info['page']['total_page'] = intval($return['informationList']['count']/$info['page']['page_size']);
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -25,117 +37,31 @@
     <?php generateNav($config,"news");?>
     <div class="content">
         <ul class="list">
-            <li>
-                <div class="left">
-                    <a href="detail.php">
-                        <img src="https://dummyimage.com/400x315/1886ff/fff" alt="">
-                    </a>
-                </div>
-                <div class="rig">
-                    <h6>
-                        四强集结！12月4日季后赛第二周重庆开战，一起见证总决赛战队诞生！
-                    </h6>
-                    <p>
-                        2020年KPL秋季赛季后赛首周比赛结束，10支季后赛战队经历生死厮杀，为我们带来无数精彩！心怀荣耀身披甲，兵临雾都振鼓旗。成都AG超玩会在胜者组第一轮零封对手晋级，月......
-                    </p>
-                    <div class="clearfix">
-                        <a class="more" href="detail.php">More</a>
-                        <span>2020-12-28</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="left">
-                    <a href="detail.php">
-                        <img src="https://dummyimage.com/400x315/1886ff/fff" alt="">
-                    </a>
-                </div>
-                <div class="rig">
-                    <h6>
-                        四强集结！12月4日季后赛第二周重庆开战，一起见证总决赛战队诞生！
-                    </h6>
-                    <p>
-                        2020年KPL秋季赛季后赛首周比赛结束，10支季后赛战队经历生死厮杀，为我们带来无数精彩！心怀荣耀身披甲，兵临雾都振鼓旗。成都AG超玩会在胜者组第一轮零封对手晋级，月......
-                    </p>
-                    <div class="clearfix">
-                        <a class="more" href="detail.php">More</a>
-                        <span>2020-12-28</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="left">
-                    <a href="detail.php">
-                        <img src="https://dummyimage.com/400x315/1886ff/fff" alt="">
-                    </a>
-                </div>
-                <div class="rig">
-                    <h6>
-                        四强集结！12月4日季后赛第二周重庆开战，一起见证总决赛战队诞生！
-                    </h6>
-                    <p>
-                        2020年KPL秋季赛季后赛首周比赛结束，10支季后赛战队经历生死厮杀，为我们带来无数精彩！心怀荣耀身披甲，兵临雾都振鼓旗。成都AG超玩会在胜者组第一轮零封对手晋级，月......
-                    </p>
-                    <div class="clearfix">
-                        <a class="more" href="detail.php">More</a>
-                        <span>2020-12-28</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="left">
-                    <a href="detail.php">
-                        <img src="https://dummyimage.com/400x315/1886ff/fff" alt="">
-                    </a>
-                </div>
-                <div class="rig">
-                    <h6>
-                        四强集结！12月4日季后赛第二周重庆开战，一起见证总决赛战队诞生！
-                    </h6>
-                    <p>
-                        2020年KPL秋季赛季后赛首周比赛结束，10支季后赛战队经历生死厮杀，为我们带来无数精彩！心怀荣耀身披甲，兵临雾都振鼓旗。成都AG超玩会在胜者组第一轮零封对手晋级，月......
-                    </p>
-                    <div class="clearfix">
-                        <a class="more" href="detail.php">More</a>
-                        <span>2020-12-28</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="left">
-                    <a href="detail.php">
-                        <img src="https://dummyimage.com/400x315/1886ff/fff" alt="">
-                    </a>
-                </div>
-                <div class="rig">
-                    <h6>
-                        四强集结！12月4日季后赛第二周重庆开战，一起见证总决赛战队诞生！
-                    </h6>
-                    <p>
-                        2020年KPL秋季赛季后赛首周比赛结束，10支季后赛战队经历生死厮杀，为我们带来无数精彩！心怀荣耀身披甲，兵临雾都振鼓旗。成都AG超玩会在胜者组第一轮零封对手晋级，月......
-                    </p>
-                    <div class="clearfix">
-                        <a class="more" href="detail.php">More</a>
-                        <span>2020-12-28</span>
-                    </div>
-                </div>
-            </li>
-            
+
+                <?php foreach($return['informationList']['data'] as $key => $value) {?>
+                    <li>
+                        <div class="left">
+                            <a href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>">
+                                <img src="<?php echo $value['logo'];?>" alt="<?php echo $value['title'];?>">
+                            </a>
+                        </div>
+                        <div class="rig">
+                            <h6>
+                                <?php echo $value['title'];?>
+                            </h6>
+                            <p>
+                                <?php echo mb_str_split($value['content'],100);?>
+                            </p>
+                            <div class="clearfix">
+                                <a class="more" href="<?php echo $config['site_url']; ?>/newsdetail/<?php echo $value['id'];?>">More</a>
+                                <span><?php echo substr((($value["type"]==2)?$value['site_time']:$value['create_time']),0,10);?></span>
+                            </div>
+                        </div>
+                    </li>
+                <?php }?>
         </ul>
         <div class="pagination-wrapper">
-            <a href="" class="prev">&lt;</a>
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="" class="active">5</a>
-            <a href="">6</a>
-            <a href="">7</a>
-            <a href="">...</a>
-            <a href="">46</a>
-            <a href="">47</a>
-            <a href="">48</a>
-            <a href="" class="next">&gt;</a>
+            <?php render_page_pagination($info['page']['total_count'],$info['page']['page_size'],$page,$config['site_url']."/newslist"); ?>
         </div>
     </div>
     <?php renderCertification();?>
