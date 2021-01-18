@@ -123,14 +123,14 @@
     function generateNav($config,$current = "index")
     {
         echo '<div class="head">
-                <a href="index.php"><img src="'.$config['site_url'].'/assets/img/logo.png" alt=""></a>
+                <a href="'.$config['site_url'].'"><img src="'.$config['site_url'].'/assets/img/logo.png" alt=""></a>
                 <div class="head-body">
                     <ul class="clearfix">';
         $navList = [
-            'news'=>['url'=>"news.php","name"=>"热门资讯"],
-            'game'=>['url'=>"game.php","name"=>"赛事赛程"],
-            'activity'=>['url'=>"activity.php","name"=>"最新活动"],
-            'aboutus'=>['url'=>"about.php","name"=>"关于我们"],
+            'news'=>['url'=>'newslist/',"name"=>"热门资讯"],
+            'game'=>['url'=>'game',"name"=>"赛事赛程"],
+            'activity'=>['url'=>'activity',"name"=>"最新活动"],
+            'aboutus'=>['url'=>'aboutus',"name"=>"关于我们"],
         ];
         foreach($navList as $key => $value)
         {

@@ -17,10 +17,10 @@
     <meta name="x5-fullscreen" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, viewport-fit=cover"/>
     <title>首页</title>
-    <link rel="stylesheet" href="./assets/css/common.css">
-    <link rel="stylesheet" href="./assets/lib/swiper.min.css">
-    <link rel="stylesheet" href="./assets/css/index_200.css"  media="(min-width:200px) and (max-width:1027px)">
-    <link rel="stylesheet" href="./assets/css/index_1028.css" media="(min-width:1028px)">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/common.css">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/lib/swiper.min.css">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/index_200.css"  media="(min-width:200px) and (max-width:1027px)">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/index_1028.css" media="(min-width:1028px)">
 
 </head>
 <body>

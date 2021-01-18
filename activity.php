@@ -17,9 +17,9 @@
     <meta name="x5-fullscreen" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, viewport-fit=cover"/>
     <title>最新活动</title>
-    <link rel="stylesheet" href="./assets/css/common.css">
-    <link rel="stylesheet" href="./assets/lib/swiper.min.css">
-    <link rel="stylesheet" href="./assets/css/activity.css">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/common.css">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/lib/swiper.min.css">
+    <link rel="stylesheet" href="<?php echo $config['site_url'];?>/assets/css/activity.css">
 </head>
 <body>
 <div class="container">
