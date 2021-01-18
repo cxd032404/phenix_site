@@ -51,27 +51,14 @@ $return = curl_post($config['api_get'],json_encode($data),1);
         <div id="certify">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
+                    <?php
+                    foreach($return["slideImage"]['data'] as $type => $pic)
+                        {?>
+
                     <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image1.png" /></a>
+                        <a href="<?php echo $pic['url'];?>"><img alt="<?php echo $pic['name'];?>" title="<?php echo $pic['name'];?>" src="<?php echo $pic['logo'];?>" /></a>
                     </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image2.png" /></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image3.png" /></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image4.png" /></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image5.png" /></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image6.png" /></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img src="./assets/img/image7.png" /></a>
-                    </div>
+                    <?php }?>
                 </div>
             </div>
             <div class="swiper-button-prev"></div>
